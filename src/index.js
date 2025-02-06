@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import { skills } from "./skills";
 
 // Avatar component
 
 function Avatar() {
   return (
     <div>
-      <img src="./profile.jpg" alt="profile picture" className="avatar" />
+      <img src="./profile.jpg" alt="profile " className="avatar" />
     </div>
   );
 }
@@ -22,9 +23,13 @@ function Data() {
         at the beach.
       </p>
       <ul className="skill-list">
-        <Skill name="JavaScript" emoji="✊" color="orange" />
+        {/* <Skill name="JavaScript" emoji="✊" color="orange" />
         <Skill name="Html " emoji="✊" color="gray" />
-        <Skill name="CSS" emoji="✊" color="green" />
+        <Skill name="CSS" emoji="✊" color="green" /> */}
+
+        {skills.map((skill) => (
+          <Skill obj={skill} />
+        ))}
       </ul>
     </div>
   );
@@ -34,8 +39,13 @@ function Data() {
 
 function Skill(props) {
   return (
-    <li className="skill" style={{ backgroundColor: props.color }}>
-      {props.name} {props.emoji}
+    <li className="skill" style={{ backgroundColor: props.obj.color }}>
+      <span>{props.obj.skill}</span> -{" "}
+      <span>
+        {props.obj.level === "beginner" && "😕"}
+        {props.obj.level === "intermediate" && "😐"}
+        {props.obj.level === "advanced" && "😄"}
+      </span>
     </li>
   );
 }
